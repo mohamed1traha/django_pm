@@ -7,8 +7,7 @@
     <h3>{% trans 'my projects' %}</h3>
     <ul>
         {% for projects in object_list %}
-
-            <li>{{projects.title}}</li>
+            <li>{{projects.title}}==><a href="{% url 'project_update' projects.pk %}"> Edit   </a></li>
 
             {% empty %}
                 <li>{% trans ' There are no projects to show' %}</li>
