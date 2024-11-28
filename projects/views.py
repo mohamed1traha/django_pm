@@ -1,3 +1,4 @@
+from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import ListView, CreateView  ,UpdateView, DeleteView
@@ -12,6 +13,22 @@ from . import forms
 class Project_View(ListView):
     model = models.Project
     template_name = 'project/list_view.html'
+    paginate_by = 6
+     
+
+    def get_queryset(self) :
+        # جلب البيانات من موديل 
+        query_set= super().get_queryset()
+        # انشاء اقموس فارغ 
+        where= {}
+        # تخزين المدخلات في فورم البحث في متغير 
+        #تم استيراد البيانت من فورم بواسطة كيت
+        q= self.request.GET.get('q',None)
+        # في حال كانت لبيانات مطابقة للمتغير الذي ادخله المستخدم يتم 
+        # اي هنا تم تخوين الشرط 
+        if q : where['title__icontains'] =q
+        # تطبيق الشرك بواسطة دالة الفلتر 
+        return query_set.filter(**where)
 
 
 # دالة انشاء المشاريع 

@@ -1,23 +1,25 @@
 from django import forms
 from . import models
 
+# تعريف الفئة المشتركة للاستخدام في الحقول
+attrs = {'class' : 'form-control'}
+
 class Project_Create_View(forms.ModelForm):
-    class Meta :
+    class Meta:
         model = models.Project
-        fields = ['category', 'title','description']
+        fields = ['category', 'title', 'description']
         widgets = {
-            'category' : forms.Select(),   
-            'title' : forms.TextInput(),   
-            
+            'category': forms.Select(attrs=attrs),
+            'title': forms.TextInput(attrs=attrs),
+            'description': forms.Textarea(attrs={**attrs, 'rows': 3, 'style': 'resize: none;'}),  # تخصيص حقل الوصف
         }
+
 class Project_Update_View(forms.ModelForm):
-    class Meta :
+    class Meta:
         model = models.Project
-        fields = ['category', 'title','projectstatus']
+        fields = ['category', 'title', 'projectstatus']
         widgets = {
-            'category' : forms.Select(),   
-            'title' : forms.TextInput(),   
-            'projectstatus' : forms.Select(),   
-            
+            'category': forms.Select(attrs=attrs),
+            'title': forms.TextInput(attrs=attrs),
+            'projectstatus': forms.Select(attrs=attrs),
         }
-     

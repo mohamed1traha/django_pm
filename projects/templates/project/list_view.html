@@ -1,18 +1,71 @@
-<!-- صفحة عرض المشاريع مع التعديل علهيا  -->
-{% load i18n %}<!-- امر استقبال اللغات  -->
-
-
+{% extends 'base.html' %} 
+{% load i18n %} <!-- أمر استقبال اللغات -->
+{% load humanize %}
 
 {% block content %}
-    <h3>{% trans 'my projects' %}</h3> <!-- امر امكان الترجمة مع النص  -->
-    <ul>
-        {% for projects in object_list %}<!-- object_list : المتغير الافتراضي  -->
-            <!-- طباعة العنوان مع رابط صفحة التعديل  -->
-            <li>{{projects.title}}==><a href="{% url 'project_update' projects.pk %}"> Edit   </a></li>
-            <!-- طباعة نص في حال عدم وجود عناصر  -->
-            {% empty %}
-                <li>{% trans ' There are no projects to show' %}</li>
+<div class="container mt-1">
+    <!-- حاوية العنوان وزر إضافة مشروع جديد -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="me-auto">{% trans 'My Projects' %}</h3>
+        <a href="{% url 'project_create' %}" class="btn btn-outline-success btn-sm">
+            <i class="bi bi-plus-lg"></i> {% trans 'New Project' %}
+        </a>
+    </div>
 
+    <!-- تحقق إذا كانت هناك مشاريع -->
+    {% if object_list %}
+    <!-- عرض المشاريع بشكل بطاقات -->
+    <div class="row my-5">
+        {% for project in object_list %}
+        <div class="col-md-4 mb-4">
+            <div class="card p-3 position-relative"> <!-- إضافة position-relative للبطاقة -->
+                <div class="card-body">
+                    <p>
+                        <!-- عرض الحالة -->
+                        <span class="badge rounded-pill bg-dark">
+                            {{ project.get_projectstatus_display }}
+                        </span>
+                    </p>
+                    <h3 class="card-title fs-6">{{ project.title }}</h3>
+                    <p class="card-text text-muted small">{{ project.description }}</p>
+                </div>
+
+                <!-- عرض الوقت في الزاوية السفلية -->
+                <span class="text-muted small position-absolute bottom-0 end-0 mb-2 me-2" style="font-size: 0.75rem;">
+                    <i class="bi bi-clock"></i>
+                    <time datetime="{{ project.update_at }}">
+                        {{ project.update_at|naturaltime }}
+                    </time>
+                </span>
+
+                <!-- أزرار التعديل والحذف -->
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex">
+                        <a href="{% url 'project_update' project.id %}" class="btn btn-sm btn-outline-dark mx-1" style="font-size: 0.75rem;">
+                            {% trans 'Edit' %}
+                        </a>
+                        <a href="{% url 'project_delete' project.id %}" class="btn btn-sm btn-outline-danger" style="font-size: 0.75rem;">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
+    {% else %}
+    <!-- إذا لم توجد مشاريع، عرض رسالة مع إيموجي ورابط -->
+    <div class="text-center my-5" style="background-color: #f0f0f0; padding: 20px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 10px;">
+        <div class="mb-3">
+            <i class="bi bi-emoji-frown fs-1"></i> <!-- إيموجي فوق النص -->
+        </div>
+        <p class="fs-4 text-muted">
+            {% trans 'No projects available. Create your first project now!' %}
+        </p>
+        <a href="{% url 'project_create' %}" class="btn btn-outline-success btn-lg">
+            <i class="bi bi-plus-lg"></i> {% trans 'Create New Project' %}
+        </a>
+    </div>
+    {% endif %}
+</div>
 {% endblock %}
