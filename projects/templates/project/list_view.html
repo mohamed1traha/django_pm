@@ -1,14 +1,15 @@
-
-{% load i18n %}
+<!-- صفحة عرض المشاريع مع التعديل علهيا  -->
+{% load i18n %}<!-- امر استقبال اللغات  -->
 
 
 
 {% block content %}
-    <h3>{% trans 'my projects' %}</h3>
+    <h3>{% trans 'my projects' %}</h3> <!-- امر امكان الترجمة مع النص  -->
     <ul>
-        {% for projects in object_list %}
+        {% for projects in object_list %}<!-- object_list : المتغير الافتراضي  -->
+            <!-- طباعة العنوان مع رابط صفحة التعديل  -->
             <li>{{projects.title}}==><a href="{% url 'project_update' projects.pk %}"> Edit   </a></li>
-
+            <!-- طباعة نص في حال عدم وجود عناصر  -->
             {% empty %}
                 <li>{% trans ' There are no projects to show' %}</li>
 

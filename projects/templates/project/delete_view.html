@@ -1,11 +1,12 @@
-{% load i18n %}
+<!-- صفحة حذف المشاريع  -->
+{% load i18n %}<!-- امر استقبال اللغات -->
 
 
 {% block content %}
     <p>Are you sure?</p>
     <form method="post">
         {% csrf_token %}
-        {{form}}
+        {{form}}<!-- المتغير الافتراضي  -->
         <input type="submit" value="submit">
     </form>
 {% endblock %}
