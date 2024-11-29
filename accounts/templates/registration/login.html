@@ -1,6 +1,6 @@
-{% extends 'base.html' %} 
-<!-- صفحة إنشاء المشاريع -->
-{% load i18n %} <!-- كود تحميل اللغات  -->
+{% extends 'accounte_base.html' %} 
+<!-- صفحة تسجيل الدخول -->
+{% load i18n %}
 
 {% block content %}
     <div class="container">
@@ -10,11 +10,39 @@
                     <h3 class="mb-0 py-2">{% trans 'Login' %}</h3>
                 </div>
                 <div class="card-body">
-                    <!-- نموذج إنشاء المشروع -->
+                    <!-- عرض الأخطاء غير المرتبطة بالحقل -->
+                    <ul class="list-group">
+                        {% for error in form.non_field_errors %}
+                            <li class="list-group-item list-group-item-danger">{{ error|escape }}</li>
+                        {% endfor %}
+
+                        <!-- عرض الأخطاء المرتبطة بكل حقل -->
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li class="list-group-item list-group-item-danger">{{ error|escape }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+
+                    <!-- نموذج تسجيل الدخول -->
                     <form method="post">
                         {% csrf_token %}
-                        <!-- عرض النموذج -->
-                        {{ form.as_p }}
+                        
+                        <!-- عرض الحقول مع التسميات -->
+                        {% for field in form %}
+                            <div class="mb-3">
+                                <label class="form-label">{{ field.label }}</label>
+                                {{ field }}
+                                <!-- إذا كان هناك خطأ في الحقل، عرض تنبيه خاص بالخطأ -->
+                                {% if field.errors %}
+                                    <div class="invalid-feedback">
+                                        {% for error in field.errors %}
+                                            <p>{{ error|escape }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
                         
                         <!-- زر إرسال البيانات -->
                         <button type="submit" class="btn btn-success btn-block">{% trans 'Submit' %}</button>
