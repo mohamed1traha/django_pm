@@ -5,12 +5,13 @@ from django.views.generic import ListView, CreateView  ,UpdateView, DeleteView
 from django.urls import reverse_lazy ,reverse
 from . import models
 from . import forms
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
 
 # لعرض المشاريع الموجود 
-class Project_View(ListView):
+class Project_View(LoginRequiredMixin,ListView):
     model = models.Project
     template_name = 'project/list_view.html'
     paginate_by = 6
@@ -32,7 +33,7 @@ class Project_View(ListView):
 
 
 # دالة انشاء المشاريع 
-class ProjectCreateView(CreateView):
+class ProjectCreateView(LoginRequiredMixin,CreateView):
     model = models.Project
     form_class = forms.Project_Create_View
     template_name = 'project/create_view.html'
@@ -42,7 +43,7 @@ class ProjectCreateView(CreateView):
 
 
 #دالة تعديل المشاريع 
-class Projectupdateview(UpdateView):
+class Projectupdateview(LoginRequiredMixin,UpdateView):
     model = models.Project
     form_class = forms.Project_Update_View
     template_name = 'project/update_view.html'
@@ -53,7 +54,7 @@ class Projectupdateview(UpdateView):
         return reverse('project_update', args=[self.object.id])
     
 # دالة حذف المشاريع 
-class ProjectDeletView(DeleteView):
+class ProjectDeletView(LoginRequiredMixin,DeleteView):
     model = models.Project
     template_name = 'project/delete_view.html'
     # لم يتم استخدام الدالة لاننها هنا لم نحتج الى الحصول على اي دي معين 
@@ -61,7 +62,7 @@ class ProjectDeletView(DeleteView):
 
     
 # دالة انشاء مهام 
-class TaskCreateView(CreateView):
+class TaskCreateView(LoginRequiredMixin,CreateView):
     model = models.Task
     fields = ['project', 'description']
     template_name = 'project/task_create_view.html'
@@ -73,7 +74,7 @@ class TaskCreateView(CreateView):
 
 # دالة تعديل المهام 
 # وتحمل عنصر واحد فقط 
-class TaskUpdateView(UpdateView):
+class TaskUpdateView(LoginRequiredMixin,UpdateView):
     model = models.Task
     fields = ['is_completed']
     http_method_names = ['post']
@@ -84,11 +85,9 @@ class TaskUpdateView(UpdateView):
 
 # دالة حذف الهام 
 # لا تحتاج الا الى تحديد الموديل 
-class TaskDeletView(DeleteView):
+class TaskDeletView(LoginRequiredMixin,DeleteView):
     model = models.Task
     # توجيه الصفحة الى الصفحة الرئيسية 
     # مع تمرير الاي دي الخاص بالمهمة 
     def get_success_url(self):
         return reverse('project_update', args=[self.object.project.id])
-
-

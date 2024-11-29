@@ -1,0 +1,26 @@
+{% extends 'base.html' %} 
+<!-- صفحة إنشاء المشاريع -->
+{% load i18n %} <!-- كود تحميل اللغات  -->
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="card col-md-6 px-0">
+                <div class="card-header">
+                    <h3 class="mb-0 py-2">{% trans 'Login' %}</h3>
+                </div>
+                <div class="card-body">
+                    <!-- نموذج إنشاء المشروع -->
+                    <form method="post">
+                        {% csrf_token %}
+                        <!-- عرض النموذج -->
+                        {{ form.as_p }}
+                        
+                        <!-- زر إرسال البيانات -->
+                        <button type="submit" class="btn btn-success btn-block">{% trans 'Submit' %}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

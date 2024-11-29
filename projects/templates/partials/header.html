@@ -11,6 +11,22 @@
                     <a class="nav-link active" aria-current="page" href="{% url 'project_list' %}">{% trans 'Home' %}</a>
                 </li>
             </ul>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      {{user.username}}
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">{% trans 'Profile' %}</a></li>
+                      <li>
+                        <form method="post" action="{% url 'logout' %}">
+                          {% csrf_token %}
+                          <button type="submit" class="dropdown-item">{% trans 'Logout' %}</button>
+                        </form>
+                      </li>
+                    </ul>
+              </div>
             <!-- محاذاة حقل البحث إلى أقصى اليمين -->
             <form method="get" action="{% url 'project_list' %}" class="d-flex ms-auto">
                 <input class="form-control me-2" type="search" placeholder="{% trans 'Search' %}" aria-label="Search" name="q" value="{{request.GET.q}}">
