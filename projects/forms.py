@@ -1,18 +1,24 @@
 from django import forms
 from . import models
-from django. utils.translation import gettext as _
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django.utils.translation import gettext_lazy as _
 
 # تعريف الفئة المشتركة للاستخدام في الحقول
 attrs = {'class' : 'form-control'}
+
+
+
+
 
 class Project_Create_View(forms.ModelForm):
     class Meta:
         model = models.Project
         fields = ['category', 'title', 'description']
-        lable = {
-            'category':_('category'),
-            'title':_('title'),
-            'description': _('description'),
+        labels = {  # تم تصحيح التسمية إلى 'labels'
+            'category':_('Category'),
+            'title':_('Title'),
+            'description':_('Description'),
         }
         widgets = {
             'category': forms.Select(attrs=attrs),
@@ -24,10 +30,10 @@ class Project_Update_View(forms.ModelForm):
     class Meta:
         model = models.Project
         fields = ['category', 'title', 'projectstatus']
-        lable = {
+        labels = {
             'category':_('category'),
             'title':_('title'),
-            'projectstatus': _('projectstatus'),
+            'projectstatus':_('projectstatus'),
         }
         widgets = {
             'category': forms.Select(attrs=attrs),

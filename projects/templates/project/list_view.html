@@ -6,11 +6,12 @@
 <div class="container mt-1">
     <!-- حاوية العنوان وزر إضافة مشروع جديد -->
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h3 class="me-auto">{% trans 'My Projects' %}</h3>
+        <h3 class="ms-auto">{% trans 'My Projects' %}</h3>
         <a href="{% url 'project_create' %}" class="btn btn-outline-success btn-sm">
             <i class="bi bi-plus-lg"></i> {% trans 'New Project' %}
         </a>
     </div>
+    
 
     <!-- تحقق إذا كانت هناك مشاريع -->
     {% if object_list %}
@@ -31,13 +32,13 @@
                 </div>
 
                 <!-- عرض الوقت في الزاوية السفلية -->
-                <span class="text-muted small position-absolute bottom-0 end-0 mb-2 me-2" style="font-size: 0.75rem;">
+                <span class="text-muted small position-absolute bottom-0 start-0 mt-2 ms-2" style="font-size: 0.75rem;">
                     <i class="bi bi-clock"></i>
                     <time datetime="{{ project.update_at }}">
                         {{ project.update_at|naturaltime }}
                     </time>
                 </span>
-
+                
                 <!-- أزرار التعديل والحذف -->
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="d-flex">

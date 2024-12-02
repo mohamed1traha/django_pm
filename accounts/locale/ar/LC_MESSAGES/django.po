@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-29 19:37+0300\n"
+"POT-Creation-Date: 2024-12-02 06:42+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,46 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: .\accounts\forms.py:16 .\accounts\forms.py:35
+msgid "Username"
+msgstr "اسم المستخدم"
+
+#: .\accounts\forms.py:20 .\accounts\forms.py:43
+msgid "Password"
+msgstr "كلمة المرور"
+
+#: .\accounts\forms.py:27
+msgid "First Name"
+msgstr "الاسم"
+
+#: .\accounts\forms.py:31
+msgid "Last Name"
+msgstr "الكنية"
+
+#: .\accounts\forms.py:39
+msgid "Email"
+msgstr "البريد الالكتروني"
+
+#: .\accounts\forms.py:47
+msgid "Confirm Password"
+msgstr "تاكيد كلمة المرور"
+
+#: .\accounts\templates\head.html:5
+msgid "Project Management"
+msgstr "ادارة المشاريع"
+
+#: .\accounts\templates\head.html:11
+#: .\accounts\templates\registration\login.html:11
+msgid "Login"
+msgstr "تسجيل الدخول"
+
+#: .\accounts\templates\head.html:14
+#: .\accounts\templates\registration\register.html:9
+#: .\accounts\templates\registration\register.html:18
+msgid "regester"
+msgstr "انشاء حساب"
+
 #: .\accounts\templates\profile.html:10
 msgid "Profile"
 msgstr "الملف الشخصية"
@@ -26,15 +66,11 @@ msgstr "الملف الشخصية"
 msgid "projile"
 msgstr "المف الشخصية"
 
-#: .\accounts\templates\registration\login.html:10
-msgid "Login"
-msgstr "تسجيل الدخول"
-
-#: .\accounts\templates\registration\login.html:48
+#: .\accounts\templates\registration\login.html:50
 msgid "Submit"
 msgstr "ارسال"
 
-#: .\accounts\templates\registration\register.html:9
-#: .\accounts\templates\registration\register.html:18
-msgid "regester"
-msgstr "انشاء حساب"
+#, fuzzy
+#~| msgid "regester"
+#~ msgid "registration"
+#~ msgstr "انشاء حساب"

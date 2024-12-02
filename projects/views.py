@@ -7,8 +7,9 @@ from django.urls import reverse_lazy ,reverse
 from . import models
 from . import forms
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.shortcuts import render
 
-# Create your views here.
+
 
 
 # لعرض المشاريع الموجود 

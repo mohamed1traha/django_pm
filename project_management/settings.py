@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'accounts',
     'projects',
+    'widget_tweaks',
+
 ]
 
 MIDDLEWARE = [
@@ -130,7 +132,15 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = 'login'  # يعيد التوجيه إلى صفحة تسجيل الدخول بعد تسجيل الخروج
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',  # أو المسار الصحيح إلى مجلد locale في مشروعك
+]
+
+
+LOGIN_REDIRECT_URL='/body/'
+LOGOUT_REDIRECT_URL='/'
+
+
+ # يعيد التوجيه إلى صفحة تسجيل الدخول بعد تسجيل الخروج
  # يعيد التوجيه إلى صفحة تسجيل الدخول
 

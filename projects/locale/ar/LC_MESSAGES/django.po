@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-29 19:37+0300\n"
+"POT-Creation-Date: 2024-12-02 07:23+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,9 +18,54 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: .\projects\forms.py:19
+msgid "Category"
+msgstr "الفئة"
+
+#: .\projects\forms.py:20
+msgid "Title"
+msgstr "عنوان"
+
+#: .\projects\forms.py:21
+msgid "Description"
+msgstr "وصف"
+
+#: .\projects\forms.py:34
+msgid "category"
+msgstr "الفئة"
+
+#: .\projects\forms.py:35
+msgid "title"
+msgstr "عنوان"
+
+#: .\projects\forms.py:36
+msgid "projectstatus"
+msgstr "حالة المشروع"
+
+#: .\projects\models.py:16
+msgid "pending"
+msgstr "قيد الانتظار"
+
+#: .\projects\models.py:17
+msgid "completed"
+msgstr "مكتمل"
+
+#: .\projects\models.py:18
+msgid "postponed"
+msgstr "مؤجل"
+
+#: .\projects\models.py:19
+msgid "canceled"
+msgstr "تم إلغاء"
+
 #: .\projects\templates\partials\footer.html:6
 msgid "(c) 2021 Hsoub. All rights reserved."
 msgstr ""
+
+#: .\projects\templates\partials\header.html:4
+msgid "Project Management"
+msgstr "إدارة المشاريع"
 
 #: .\projects\templates\partials\header.html:11
 msgid "Home"
@@ -64,17 +109,15 @@ msgstr "مشاريعي"
 msgid "New Project"
 msgstr "مشروع جديد"
 
-#: .\projects\templates\project\list_view.html:45
+#: .\projects\templates\project\list_view.html:46
 msgid "Edit"
 msgstr "تعديل"
 
-#: .\projects\templates\project\list_view.html:63
+#: .\projects\templates\project\list_view.html:64
 msgid "No projects available. Create your first project now!"
 msgstr "لا توجد مشاريع متاحة. قم بإنشاء مشروعك الأول الآن"
 
-
-
-#: .\projects\templates\project\list_view.html:66
+#: .\projects\templates\project\list_view.html:67
 msgid "Create New Project"
 msgstr "انشاء مشروع جديد"
 
@@ -114,3 +157,6 @@ msgstr "اضافة"
 #: .\projects\templates\project\update_view.html:26
 msgid "Edit Project"
 msgstr "تعديل المشروع"
+
+#~ msgid "Projects Management"
+#~ msgstr "إدارة المشاريع"
