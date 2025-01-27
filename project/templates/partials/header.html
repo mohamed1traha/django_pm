@@ -18,9 +18,9 @@
                       {{user.username}}
                     </a>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">{% trans 'Profile' %}</a></li>
+                      <li><a class="dropdown-item" href="{% url 'profile' %}">{% trans 'Profile' %}</a></li>
                       <li>
-                        <form method="post" action="#">
+                        <form method="post" action="{% url 'logout' %}">
                           {% csrf_token %}
                           <button type="submit" class="dropdown-item">{% trans 'Logout' %}</button>
                         </form>

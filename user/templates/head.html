@@ -1,0 +1,23 @@
+{% load i18n %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-success bg-gradient p-3">
+    <div class="container-fluid">
+        <!-- العنوان الرئيسي -->
+        <a class="navbar-brand" href="#">{% trans 'Project Management' %}</a>
+        
+        <!-- الروابط في الإطار -->
+        <div class="border border-light rounded p-2 ms-auto">
+            {% if request.resolver_match.url_name == "register" %}
+                <!-- عرض زر تسجيل الدخول فقط إذا كنت في صفحة التسجيل -->
+                <a class="navbar-brand" href="{% url 'login' %}">{% trans 'Login' %}</a>
+            {% elif request.resolver_match.url_name == "login" %}
+                <!-- عرض زر التسجيل فقط إذا كنت في صفحة تسجيل الدخول -->
+                <a class="navbar-brand" href="{% url 'register' %}">{% trans 'regester' %}</a>
+            {% else %}
+                <!-- عرض كلا الزرين في الصفحات الأخرى -->
+                <a class="navbar-brand me-2" href="{% url 'login' %}">Login</a>
+                <a class="navbar-brand" href="{% url 'register' %}">Register</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+
