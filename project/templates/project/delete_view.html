@@ -1,11 +1,24 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %} <!-- امتداد القالب الأساسي -->
+{% load i18n %} <!-- أمر استقبال اللغات -->
 
 {% block content %}
-    <p>Are you shur</p>
-    <form method="post">
-        {% csrf_token %}
-        {{form}}
-        <input type="submit" value="submit">
-    </form>
+    <!-- رسالة التأكيد لحذف المشروع -->
+    <div class="container mt-4">
+        <div class="alert alert-warning">
+            <p>{% trans 'Are you sure you want to delete' %} <strong>{{ project.title }}</strong>?</p>
+        </div>
 
+        <!-- نموذج الحذف مع الزر الأحمر -->
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form }} <!-- عرض الحقول الخاصة بالنموذج -->
+            </div>
+
+            <!-- زر الحذف الأحمر -->
+            <button type="submit" class="btn btn-danger btn-lg mt-3">
+                <i class="bi bi-trash"></i> {% trans 'Delete Project' %}
+            </button>
+        </form>
+    </div>
 {% endblock %}

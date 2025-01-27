@@ -1,30 +1,62 @@
 
-<ul>
+{% load i18n %}
 
-    {% for task in project.task_set.all %}
-        <li>
-            <form method="post" action="{% url 'task_update' task.id %}">
+{% block content %}
+<div class="container mt-4">
+    <h3 class="mb-4">{% trans 'Tasks' %}</h3>
+
+    <!-- عرض المهام الموجودة -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <ul class="list-group">
+                {% for task in project.task_set.all %}
+                    <li class="list-group-item d-flex align-items-center">
+                        <!-- مربع إتمام المهمة بجانب الأيسر -->
+                        <form method="post" action="{% url 'task_update' task.id %}" class="me-3">
+                            {% csrf_token %}
+                            <input type="checkbox" name="is_completed"
+                                   {% if task.is_completed %} checked {% endif %}
+                                   onchange="this.form.submit()" class="form-check-input">
+                        </form>
+                        
+                        <!-- وصف المهمة وحالتها -->
+                        <div class="flex-grow-1">
+                            <strong>{{ task.description }}</strong>
+                            {% if task.is_completed %}
+                                <span class="badge bg-success ms-2">{% trans 'Completed' %}</span>
+                            {% else %}
+                                <span class="badge bg-warning ms-2">{% trans 'Pending' %}</span>
+                            {% endif %}
+                        </div>
+
+                        <!-- زر حذف المهمة -->
+                        <form method="post" action="{% url 'task_delete' task.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm">{% trans 'Delete' %}</button>
+                        </form>
+                    </li>
+                {% empty %}
+                    <p>{% trans 'No tasks available' %}</p>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <!-- صندوق إنشاء المهام -->
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{% trans 'Create New Task' %}</h5>
+            <form method="post" action="{% url 'task_create' %}">
                 {% csrf_token %}
-                <input 
-                    type="checkbox"
-                    name="is_completed"
-
-                    {% if task.is_completed %} checked {% endif %} 
-                    onchange="this.form.submit()"
-                    >
+                <input type="hidden" value="{{ project.id }}" name="project">
+                <div class="mb-3">
+                    <label for="description" class="form-label"></label>
+                    <!-- حقل إدخال وصف المهمة -->
+                    <input type="text" class="form-control" name="description" id="description" placeholder="{% trans 'Enter task description' %}">
+                </div>
+                <button type="submit" class="btn btn-primary">{% trans 'Add' %}</button>
             </form>
-            <form method="post" action="{% url 'task_delete' task.id %}">
-                {% csrf_token %}
-                <button type="submit">Delete</button>
-                {{ task.description }}
-            </form>
-        </li>
-    {% endfor %}
-</ul>
-
-<form method="post" action="{% url 'task_create' %}">
-    {% csrf_token %}
-    <input type="hidden" value="{{project.id}}" name="project">
-    <input type="text" name="description" placeholder="new taks">
-    <input type="submit" value="add">
-</form>
+        </div>
+    </div>
+</div>
+{% endblock %}

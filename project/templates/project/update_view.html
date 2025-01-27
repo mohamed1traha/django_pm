@@ -1,12 +1,40 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
-    <form method="post">
-        {% csrf_token %}
-        {{form}}
-        <input type="submit" value="submit">
-    </form>
-    <a href="{% url 'project_delete' object.id %}">Delete</a>
-    {% include 'project/task_create_view.html' with project=object %}
+<div class="container mt-4">
+    <div class="row">
+        <!-- قسم المهام في الجهة اليسرى (عريض) -->
+        <div class="col-md-8">
+            
 
+            <!-- استدعاء صفحة إنشاء المهام -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    {% include 'project/task_create_view.html' with project=object %}
+                </div>
+            </div>
+
+            <!-- عرض المهام -->
+            
+        </div>
+
+        <!-- قسم تعديل المشروع في الجهة اليمنى (بطاقة صغيرة) -->
+        <div class="col-md-4" style="margin-top: 15px;">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="mb-4">{% trans 'Edit Project' %}</h3>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form }}
+                        <button type="submit" class="btn btn-primary w-100">{% trans 'Submit' %}</button>
+                    </form>
+                    <a href="{% url 'project_delete' object.id %}" class="btn btn-danger w-100 mt-3">
+                        {% trans 'Delete' %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
