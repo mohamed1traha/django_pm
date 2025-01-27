@@ -4,7 +4,7 @@
     <h3>myproject</h3>
     <ul>
         {% for project in object_list %}
-        {{ project.title }}
+        <li>{{ project.title }} <a href="{% url 'project_update' pk=project.id %}">edit</a></li>
         {% empty %}
             'no'
         {% endfor %}

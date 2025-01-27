@@ -13,5 +13,16 @@ class Project_Create_View(forms.ModelForm):
             'description': forms.Textarea(attrs={**attrs, 'rows': 3, 'style': 'resize: none;'}),  # تخصيص حقل الوصف
         }
 
+class Project_Update_View(forms.ModelForm):
+    class Meta:
+        model = models.Project
+        fields = ['category', 'title', 'projectstatus']
+        widgets = {
+            'category': forms.Select(attrs=attrs),
+            'title': forms.TextInput(attrs=attrs),
+            'projectstatus': forms.Select(attrs=attrs),
+        }
+
+
 
     
