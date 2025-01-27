@@ -1,0 +1,12 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+    <h3>myproject</h3>
+    <ul>
+        {% for project in object_list %}
+        {{ project.title }}
+        {% empty %}
+            'no'
+        {% endfor %}
+    </ul>
+{% endblock %}
