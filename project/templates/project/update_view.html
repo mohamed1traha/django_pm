@@ -24,11 +24,28 @@
             <div class="card">
                 <div class="card-body">
                     <h3 class="mb-4">{% trans 'Edit Project' %}</h3>
-                    <form method="post">
-                        {% csrf_token %}
-                        {{ form }}
-                        <button type="submit" class="btn btn-primary w-100">{% trans 'Submit' %}</button>
-                    </form>
+                        <form method="post">
+                            {% csrf_token %}
+                            <!-- عرض العناوين الخاصة بكل حقل مع الترجمة -->
+                            <div class="mb-3">
+                                <label for="id_category" class="form-label">{% trans 'Category' %}</label>
+                                {{ form.category }}
+                            </div>
+                        
+                            <div class="mb-3">
+                                <label for="id_title" class="form-label">{% trans 'Title' %}</label>
+                                {{ form.title }}
+                            </div>
+                        
+                            <div class="mb-3">
+                                <label for="id_description" class="form-label">{% trans 'Projectstatus' %}</label>
+                                {{ form.projectstatus }}
+                            </div>
+                        
+                            <!-- زر إرسال البيانات -->
+                            <button type="submit" class="btn btn-primary w-100">{% trans 'Submit' %}</button>
+                        </form>
+                    
                     <a href="{% url 'project_delete' object.id %}" class="btn btn-danger w-100 mt-3">
                         {% trans 'Delete' %}
                     </a>

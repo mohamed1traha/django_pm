@@ -1,6 +1,6 @@
-{% extends 'base.html' %} 
-{% load i18n %} 
-{% load widget_tweaks %}
+{% extends 'base.html' %}
+<!-- صفحة إنشاء المشاريع -->
+{% load i18n %} <!-- كود تحميل اللغات  -->
 
 {% block content %}
     <div class="container mt-4">
@@ -13,12 +13,21 @@
                     <!-- نموذج إنشاء المشروع -->
                     <form method="post">
                         {% csrf_token %}
-                        <!-- عرض النموذج مع إضافة form-control -->
-                        {% for field in form %}
-                            <div class="form-group">
-                                {{ field|add_class:"form-control" }}
-                            </div>
-                        {% endfor %}
+                        <!-- عرض العناوين الخاصة بكل حقل مع الترجمة -->
+                        <div class="mb-3">
+                            <label for="id_category" class="form-label">{% trans 'Category' %}</label>
+                            {{ form.category }}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="id_title" class="form-label">{% trans 'Title' %}</label>
+                            {{ form.title }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_description" class="form-label">{% trans 'Description' %}</label>
+                            {{ form.description }}
+                        </div>
                         
                         <!-- زر إرسال البيانات -->
                         <button type="submit" class="btn btn-success mt-3">{% trans 'Submit' %}</button>
